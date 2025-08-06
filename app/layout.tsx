@@ -1,12 +1,38 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import { Inter } from 'next/font/google'
 import './globals.css'
 
+const inter = Inter({ 
+  subsets: ['latin', 'arabic'],
+  display: 'swap',
+  variable: '--font-inter'
+})
+
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Telegram Member Transfer Tool v4 - AI-Powered Transfer System',
+  description: 'AI-powered tool that securely moves members from public to private Telegram groups. Fast, secure, and automated transfer process.',
+  keywords: ['telegram', 'member transfer', 'AI', 'automation', 'group management'],
+  authors: [{ name: 'Telegram Transfer Team' }],
+  creator: 'Telegram Transfer Tool',
+  publisher: 'Telegram Transfer Tool',
+  robots: 'index, follow',
+  openGraph: {
+    title: 'Telegram Member Transfer Tool v4',
+    description: 'AI-powered tool for secure Telegram member transfers',
+    type: 'website',
+    locale: 'en_US',
+    alternateLocale: ['ar_SA'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Telegram Member Transfer Tool v4',
+    description: 'AI-powered tool for secure Telegram member transfers',
+  },
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' }
+  ],
 }
 
 export default function RootLayout({
@@ -15,17 +41,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
-      </head>
-      <body>{children}</body>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <body className={`${inter.className} antialiased`}>
+        <div id="root">{children}</div>
+      </body>
     </html>
   )
 }
